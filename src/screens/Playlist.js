@@ -18,12 +18,14 @@ import TrackPlayer, {
   usePlaybackState,
   useProgress,
 } from 'react-native-track-player';
+import SongPlayer from '../../SongPlayer';
 const {width} = Dimensions.get('window');
 
 const Playlist = ({navigation}) => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const playbackState = usePlaybackState();
   const progress = useProgress();
+  const [isVisible, setIsVisible] = useState(false);
   console.log(State.Playing);
   console.log(playbackState.state);
   console.log(State.Playing == playbackState.state);
@@ -224,7 +226,6 @@ const Playlist = ({navigation}) => {
                   <View
                     style={{
                       flexDirection: 'row',
-                      // justifyContent: 'space-around',
                       width: 280,
                     }}>
                     <Text
@@ -261,7 +262,9 @@ const Playlist = ({navigation}) => {
           }}
         />
       </ScrollView>
-      <View
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => setIsVisible(true)}
         style={{
           height: 80,
           width: '100%',
@@ -269,7 +272,91 @@ const Playlist = ({navigation}) => {
           bottom: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.9)',
           flexDirection: 'row',
-        }}></View>
+          justifyContent: 'space-between',
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <Image
+            source={songs[currentIndex].image}
+            style={{
+              height: 60,
+              width: 60,
+              alignSelf: 'center',
+              marginLeft: 30,
+              borderRadius: 5,
+            }}
+          />
+          <View
+            style={{
+              // alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: 25,
+            }}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: 'grey',
+                fontWeight: 800,
+                // textAlign: 'center',
+              }}>
+              {songs[currentIndex].title}
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: 'grey',
+                fontWeight: 600,
+                // textAlign: 'center',
+              }}>
+              {songs[currentIndex].artist}
+            </Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          onPress={async () => {
+            if (State.Playing == playbackState.state) {
+              await TrackPlayer.pause();
+            } else {
+              // await TrackPlayer.skip(currentIndex);
+              await TrackPlayer.play();
+            }
+          }}
+          style={{
+            backgroundColor: '#fff',
+            height: 40,
+            width: 40,
+            borderRadius: 20,
+            marginTop: 15,
+            marginRight: 10,
+          }}>
+          {State.Playing == playbackState.state ? (
+            <Image
+              source={require('../../assets/logo/pause.png')}
+              style={{
+                height: 40,
+                width: 40,
+                borderRadius: 20,
+              }}
+            />
+          ) : (
+            <Image
+              source={require('../../assets/logo/plays.png')}
+              style={{
+                height: 40,
+                width: 40,
+                borderRadius: 20,
+              }}
+            />
+          )}
+        </TouchableOpacity>
+      </TouchableOpacity>
+      <SongPlayer
+        songs={songs}
+        currentIndex={currentIndex}
+        playbackState={playbackState}
+        progress={progress}
+        isVisible={isVisible}
+        onClose={() => setIsVisible(false)}
+      />
     </View>
   );
 };
