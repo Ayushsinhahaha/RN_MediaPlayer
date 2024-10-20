@@ -117,6 +117,7 @@ const Playlist = ({navigation}) => {
         </View>
 
         {/* Playlist Image */}
+
         <View style={{alignItems: 'center', marginTop: 50}}>
           <Image
             source={songs[currentIndex].image}
@@ -356,6 +357,9 @@ const Playlist = ({navigation}) => {
         progress={progress}
         isVisible={isVisible}
         onClose={() => setIsVisible(false)}
+        onChange={x => {
+          setCurrentIndex(x);
+        }}
       />
     </View>
   );

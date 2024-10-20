@@ -11,6 +11,7 @@ const SongPlayer = ({
   playbackState,
   isVisible,
   onClose,
+  onChange,
 }) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(currentIndex);
 
@@ -99,10 +100,11 @@ const SongPlayer = ({
           }}>
           <TouchableOpacity
             onPress={async () => {
-              if (currentSongIndex > 1) {
+              if (currentSongIndex > 0) {
                 await TrackPlayer.skip(currentSongIndex - 1);
                 await TrackPlayer.play();
                 setCurrentSongIndex(currentSongIndex - 1);
+                onChange(currentSongIndex - 1);
               }
             }}>
             <Image
@@ -115,7 +117,7 @@ const SongPlayer = ({
               if (State.Playing == playbackState.state) {
                 await TrackPlayer.pause();
               } else {
-                await TrackPlayer.skip(currentSongIndex);
+                await TrackPlayer.skip(currentIndex);
                 await TrackPlayer.play();
               }
             }}>
@@ -130,10 +132,11 @@ const SongPlayer = ({
           </TouchableOpacity>
           <TouchableOpacity
             onPress={async () => {
-              if (currentSongIndex < songs.length) {
+              if (currentSongIndex <= songs.length - 1) {
                 await TrackPlayer.skip(currentSongIndex + 1);
                 await TrackPlayer.play();
                 setCurrentSongIndex(currentSongIndex + 1);
+                onChange(currentSongIndex + 1);
               }
             }}>
             <Image

@@ -23,17 +23,24 @@ export const songs = [
     url: require('../assets/songs/husn.mp3'),
   },
   {
+    title: 'Tere Hi Hum',
+    artist: 'Prateek Kuhad',
+    image: require('../assets/albumImages/terehihum.jpeg'),
+    id: '4',
+    url: require('../assets/songs/tunekaha.mp3'),
+  },
+  {
     title: 'Sukoon',
     artist: 'Gini',
     image: require('../assets/albumImages/sukoon.jpeg'),
-    id: '4',
+    id: '5',
     url: require('../assets/songs/Sukoon.mp3'),
   },
   {
     title: 'Tune Kaha',
     artist: 'Prateek Kuhad',
     image: require('../assets/albumImages/tunekahaa.jpg'),
-    id: '5',
+    id: '6',
     url: require('../assets/songs/tunekaha.mp3'),
   },
 ];
