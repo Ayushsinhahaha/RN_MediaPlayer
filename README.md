@@ -23,13 +23,13 @@ A feature-rich music app built using React Native, featuring a **Song Playing Sc
 ## 📱 Screenshots
 
 ### Song Playing Screen
-![Song Playing Screen](assets/screenshots/song-playing-screen.png)
+![Song Playing Screen](assets/screenshots/PlayDrawer.png)
 
 ### Playlist Screen
-![Playlist Screen](assets/screenshots/playlist-screen.png)
+![Playlist Screen](assets/screenshots/Playlist.png)
 
 ### Song List
-![Song List](assets/screenshots/song-list.png)
+![Song List](assets/screenshots/Songs.png)
 
 ---
 
